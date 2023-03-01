@@ -1,0 +1,163 @@
+SQL>  create table Employee_Details
+  2     (
+  3     Emp_id number(10),
+  4     Emp_name varchar2(20),
+  5    Job_name varchar2(20),
+  6    Manager_id number(10),
+  7    Hire_date date,
+  8    Salary number(10),
+  9    Dep_id number(10)
+ 10    );
+
+Table created.
+
+***********************************************************************************************************************************************************
+
+
+SQL> desc Employee_Details
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(10)
+ EMP_NAME                                           VARCHAR2(20)
+ JOB_NAME                                           VARCHAR2(20)
+ MANAGER_ID                                         NUMBER(10)
+ HIRE_DATE                                          DATE
+ SALARY                                             NUMBER(10)
+ DEP_ID                                             NUMBER(10)
+
+************************************************************************************************************************************************************
+
+SQL> insert into Employee_Details values(1111,'K.Bhargavi','SDE',1201,'1-mar-2020',100000,2931);
+
+1 row created.
+
+SQL> insert into Employee_Details values(2222,'M.Hansika','Designer',1211,'8-nov-2020',90000,2932);
+
+1 row created.
+
+SQL> insert into Employee_Details values(3333,'K.Subbu','SDE',1201,'8-nov-2020',95000,2931);
+
+1 row created.
+
+SQL> insert into Employee_Details values(4444,'S.Mahesh','HR',1221,'19-may-2021',85000,2832);
+
+1 row created.
+
+SQL> insert into Employee_Details values(5555,'S.Lalitha','HR',2351,'23-jul-2020',85000,5672);
+
+1 row created.
+
+SQL> insert into Employee_Details values(6666,'N.Raj','Operational Manager',6423,'13-aug-2021',90000,3245);
+
+1 row created.
+
+SQL> insert into Employee_Details values(7777,'B.Sahithi','HR',5673,'14-jan-2021',80000,3467);
+
+1 row created.
+
+SQL> insert into Employee_Details values(8888,'T.Vikas','SDE',2345,'11-sep-2021',95000,3987);
+
+1 row created.
+
+SQL> insert into Employee_Details values(9999,'V.Jahnavi','Finance Manager',4534,'23-dec-2021',75000,2344);
+
+1 row created.
+
+SQL> insert into Employee_Details values(1001,'K.Saritha','SDE',9879,'10-oct-2021',95000,5421);
+
+1 row created.
+
+************************************************************************************************************************************************************
+
+SQL> select * from Employee_Details
+  2  ;
+
+    EMP_ID EMP_NAME             JOB_NAME             MANAGER_ID HIRE_DATE
+---------- -------------------- -------------------- ---------- ---------
+    SALARY     DEP_ID
+---------- ----------
+      1111 K.Bhargavi           SDE                        1201 01-MAR-20
+    100000       2931
+
+      2222 M.Hansika            Designer                   1211 08-NOV-20
+     90000       2932
+
+      3333 K.Subbu              SDE                        1201 08-NOV-20
+     95000       2931
+
+
+    EMP_ID EMP_NAME             JOB_NAME             MANAGER_ID HIRE_DATE
+---------- -------------------- -------------------- ---------- ---------
+    SALARY     DEP_ID
+---------- ----------
+      4444 S.Mahesh             HR                         1221 19-MAY-21
+     85000       2832
+
+      5555 S.Lalitha            HR                         2351 23-JUL-20
+     85000       5672
+
+      6666 N.Raj                Operational Manager        6423 13-AUG-21
+     90000       3245
+
+
+    EMP_ID EMP_NAME             JOB_NAME             MANAGER_ID HIRE_DATE
+---------- -------------------- -------------------- ---------- ---------
+    SALARY     DEP_ID
+---------- ----------
+      7777 B.Sahithi            HR                         5673 14-JAN-21
+     80000       3467
+
+      8888 T.Vikas              SDE                        2345 11-SEP-21
+     95000       3987
+
+      9999 V.Jahnavi            Finance Manager            4534 23-DEC-21
+     75000       2344
+
+
+    EMP_ID EMP_NAME             JOB_NAME             MANAGER_ID HIRE_DATE
+---------- -------------------- -------------------- ---------- ---------
+    SALARY     DEP_ID
+---------- ----------
+      1001 K.Saritha            SDE                        9879 10-OCT-21
+     95000       5421
+
+
+10 rows selected.
+
+********************************************************************************************************************************************************
+
+SQL> select Salary from Employee_Details;
+
+    SALARY
+----------
+    100000
+     90000
+     95000
+     85000
+     85000
+     90000
+     80000
+     95000
+     75000
+     95000
+
+10 rows selected.
+
+*********************************************************************************************************************************************************
+
+SQL> select distinct Job_name from Employee_Details;
+
+JOB_NAME
+--------------------
+SDE
+Finance Manager
+HR
+Designer
+Operational Manager
+
+***********************************************************************************************************************************************************
+
+SQL> update Employee_Details set Salary=100000 where Emp_name='N.Raj';
+
+1 row updated.
+

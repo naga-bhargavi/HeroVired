@@ -1,0 +1,142 @@
+
+SQL> create table Football_Venue
+  2  (
+  3  venue_id number(10),
+  4  venue_name varchar2(20),
+  5  city_id varchar2(10),
+  6  capacity number(10)
+  7  );
+
+Table created.
+
+**********************************************************************************************************************************************************
+
+
+SQL> Desc Football_venue
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ VENUE_ID                                           NUMBER(10)
+ VENUE_NAME                                         VARCHAR2(20)
+ CITY_ID                                            VARCHAR2(10)
+ CAPACITY                                           NUMBER(10)
+
+**********************************************************************************************************************************************************
+
+SQL> insert into Football_Venue values(20001,'France','10003A',42115);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20002,'USA','10231C',231132);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20003,'Africa','21131C',284652);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20004,'Australia','26461A',84637);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20005,'India','3749Q',98253);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20006,'TamilNadu','6574R',84657);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20007,'Japan','2345S',7843);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20008,'Napal','4657T',65743);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20009,'Bihar','6571B',4312);
+
+1 row created.
+
+SQL> insert into Football_Venue values(20010,'Odissa','23454K',23234);
+
+1 row created.
+
+*********************************************************************************************************************************************************
+
+
+SQL> select * from Football_Venue
+  2  ;
+
+  VENUE_ID VENUE_NAME           CITY_ID      CAPACITY
+---------- -------------------- ---------- ----------
+     20001 France               10003A          42115
+     20002 USA                  10231C         231132
+     20003 Africa               21131C         284652
+     20004 Australia            26461A          84637
+     20005 India                3749Q           98253
+     20006 TamilNadu            6574R           84657
+     20007 Japan                2345S            7843
+     20008 Napal                4657T           65743
+     20009 Bihar                6571B            4312
+     20010 Odissa               23454K          23234
+
+10 rows selected.
+
+**********************************************************************************************************************************************************
+
+
+SQL> select count(*) from Football_Venue;
+
+  COUNT(*)
+----------
+         10
+
+**********************************************************************************************************************************************************
+
+
+SQL> select venue_name as Location,capacity as Vloume from Football_Venue;
+
+LOCATION                 VLOUME
+-------------------- ----------
+France                    42115
+USA                      231132
+Africa                   284652
+Australia			  84637
+India                     98253
+TamilNadu                 84657
+Japan                      7843
+Napal                     65743
+Bihar                      4312
+Odissa                    23234
+
+10 rows selected.
+
+**********************************************************************************************************************************************************
+
+SQL> delete from Football_Venue where venue_name='Australia';
+
+1 row deleted.
+
+**********************************************************************************************************************************************************
+
+SQL> select * from Football_Venue;
+
+  VENUE_ID VENUE_NAME           CITY_ID      CAPACITY
+---------- -------------------- ---------- ----------
+     20001 France               10003A          42115
+     20002 USA                  10231C         231132
+     20003 Africa               21131C         284652
+     20005 India                3749Q           98253
+     20006 TamilNadu            6574R           84657
+     20007 Japan                2345S            7843
+     20008 Napal                4657T           65743
+     20009 Bihar                6571B            4312
+     20010 Odissa               23454K          23234
+
+9 rows selected.
+
+
+
+
+
