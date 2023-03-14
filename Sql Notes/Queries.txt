@@ -1,0 +1,263 @@
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> grant create session to Bhargavi
+  2  ;
+
+Grant succeeded.
+
+SQL> grant create table to Bhargavi;
+
+Grant succeeded.
+
+SQL> grant unlimited tablespace to text;
+grant unlimited tablespace to text
+                              *
+ERROR at line 1:
+ORA-01917: user or role 'TEXT' does not exist
+
+
+SQL>
+SQL> grant unlimited tablespace to Bhargavi;
+
+Grant succeeded.
+
+SQL> connect
+Enter user-name: Bhargavi
+Enter password:
+Connected.
+SQL> connect Bhargavi/system
+Connected.
+SQL> create table emp
+  2  (
+  3  e_id number(10),
+  4  e_name varchar2(10),
+  5  department varchar2(20),
+  6  e_age number(10),
+  7  gender varchar2(10),
+  8  e_salary number(10)
+  9  );
+
+Table created.
+
+SQL> insert into emp values(&a.&b,&c,&d,&e,&f);
+Enter value for a: 201
+Enter value for b: 'Bhargavi'
+Enter value for c: 'Maths'
+Enter value for d: 30
+Enter value for e: 'F'
+Enter value for f: 95000
+old   1: insert into emp values(&a.&b,&c,&d,&e,&f)
+new   1: insert into emp values(201'Bhargavi','Maths',30,'F',95000)
+insert into emp values(201'Bhargavi','Maths',30,'F',95000)
+                          *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into emp values(&a,&b,&c,&d,&e,&f);
+Enter value for a: 201
+Enter value for b: 'Bhargavi'
+Enter value for c: 'Maths'
+Enter value for d: 30
+Enter value for e: 'F'
+Enter value for f: 95000
+old   1: insert into emp values(&a,&b,&c,&d,&e,&f)
+new   1: insert into emp values(201,'Bhargavi','Maths',30,'F',95000)
+
+1 row created.
+
+SQL> /
+Enter value for a: 202
+Enter value for b: 'Candy'
+Enter value for c: 'English'
+Enter value for d: 31
+Enter value for e: 'F'
+Enter value for f: 90000
+old   1: insert into emp values(&a,&b,&c,&d,&e,&f)
+new   1: insert into emp values(202,'Candy','English',31,'F',90000)
+
+1 row created.
+
+SQL> /
+Enter value for a: 203
+Enter value for b: 'Subash'
+Enter value for c: 'Physics'
+Enter value for d: 32
+Enter value for e: 'M'
+Enter value for f: 85000
+old   1: insert into emp values(&a,&b,&c,&d,&e,&f)
+new   1: insert into emp values(203,'Subash','Physics',32,'M',85000)
+
+1 row created.
+
+SQL> /
+Enter value for a: 204
+Enter value for b: 'Hasini'
+Enter value for c: 'Chemistry'
+Enter value for d: 34
+Enter value for e: 'F'
+Enter value for f: 70000
+old   1: insert into emp values(&a,&b,&c,&d,&e,&f)
+new   1: insert into emp values(204,'Hasini','Chemistry',34,'F',70000)
+
+1 row created.
+
+SQL> /
+Enter value for a: 205
+Enter value for b: 'Vikas'
+Enter value for c: 'Botany'
+Enter value for d: 35
+Enter value for e: 'G'
+Enter value for f: 50000
+old   1: insert into emp values(&a,&b,&c,&d,&e,&f)
+new   1: insert into emp values(205,'Vikas','Botany',35,'G',50000)
+
+1 row created.
+
+SQL> desc emp
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ E_ID                                               NUMBER(10)
+ E_NAME                                             VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(20)
+ E_AGE                                              NUMBER(10)
+ GENDER                                             VARCHAR2(10)
+ E_SALARY                                           NUMBER(10)
+
+SQL> select * from emp
+  2  ;
+
+      E_ID E_NAME     DEPARTMENT                E_AGE GENDER       E_SALARY
+---------- ---------- -------------------- ---------- ---------- ----------
+       201 Bhargavi   Maths                        30 F               95000
+       202 Candy      English                      31 F               90000
+       203 Subash     Physics                      32 M               85000
+       204 Hasini     Chemistry                    34 F               70000
+       205 Vikas      Botany                       35 G               50000
+
+SQL> select e_name,department fromo emp where gender='F' or e_salary<=70000;
+select e_name,department fromo emp where gender='F' or e_salary<=70000
+                               *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select e_name,department from emp where gender='F' or e_salary<=70000;
+
+E_NAME     DEPARTMENT
+---------- --------------------
+Bhargavi   Maths
+Candy      English
+Hasini     Chemistry
+Vikas      Botany
+
+SQL> select e_name,department from emp where gender='F' and e_salary>70000;
+
+E_NAME     DEPARTMENT
+---------- --------------------
+Bhargavi   Maths
+Candy      English
+
+SQL> update emp set gender='M' where e_name='Vikas';
+
+1 row updated.
+
+SQL> select * from emp where e_name like ('%s');
+
+      E_ID E_NAME     DEPARTMENT                E_AGE GENDER       E_SALARY
+---------- ---------- -------------------- ---------- ---------- ----------
+       205 Vikas      Botany                       35 M               50000
+
+SQL> select e_name . salary from emp where e_id in (201,203,205);
+select e_name . salary from emp where e_id in (201,203,205)
+       *
+ERROR at line 1:
+ORA-00904: "E_NAME"."SALARY": invalid identifier
+
+
+SQL> select e_name , salary from emp where e_id in (201,203,205);
+select e_name , salary from emp where e_id in (201,203,205)
+                *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier
+
+
+SQL> select e_name , e_salary from emp where e_id in (201,203,205);
+
+E_NAME       E_SALARY
+---------- ----------
+Bhargavi        95000
+Subash          85000
+Vikas           50000
+
+SQL> select e_id,e_name,department form emp where e_salary between 90000 and 100000;;
+select e_id,e_name,department form emp where e_salary between 90000 and 100000;
+                                   *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select e_id,e_name,department from emp where e_salary between 90000 and 100000;;
+select e_id,e_name,department from emp where e_salary between 90000 and 100000;
+                                                                              *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> select e_id,e_name,department from emp where e_salary between 90000 and 100000;
+
+      E_ID E_NAME     DEPARTMENT
+---------- ---------- --------------------
+       201 Bhargavi   Maths
+       202 Candy      English
+
+SQL> create table driving_License
+  2  (
+  3  Lic_no number(10),
+  4  name varchar2(20),
+  5  DOB date not null,
+  6  vehicle_class varchar2(20) not null,
+  7  DOI date,
+  8  valid date
+  9
+SQL>
+SQL> create table driving_License
+  2  (
+  3  Lic_no number(10) not null,
+  4  name varchar2(20),
+  5  DOB date not null,
+  6  vehicle_class varchar2(20) not null,
+  7  DOI date,
+  8  valid date
+  9  );
+
+Table created.
+
+SQL> desc driving_License;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LIC_NO                                    NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ DOB                                       NOT NULL DATE
+ VEHICLE_CLASS                             NOT NULL VARCHAR2(20)
+ DOI                                                DATE
+ VALID                                              DATE
+
+SQL> insert into driving_License values(901,'Bhargavi','8-nov-2002',' ','2-feb-2020','6-feb-2022');
+
+1 row created.
+
+SQL> select * from driving_License;
+
+    LIC_NO NAME                 DOB       VEHICLE_CLASS        DOI
+---------- -------------------- --------- -------------------- ---------
+VALID
+---------
+       901 Bhargavi             08-NOV-02                      02-FEB-20
+06-FEB-22
+
+
+SQL>
