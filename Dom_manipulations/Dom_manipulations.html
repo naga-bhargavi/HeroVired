@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM_Manipulations </title>
+    <style>
+        button{
+            background-color: rgb(148 7 244);
+            border-radius: 5px;
+            padding: 6px;
+            width: 90px;
+
+            color: #fff;
+        }
+        #div1{
+            height:auto;
+            width: 60%;
+            text-align: center;
+            margin-left: 200px;
+        }
+
+    </style>    
+</head>
+<body>
+<h2 style="text-align: center;"><u>DOM MAPULATIONS ON ONMOUSEOVER , ONMOUSEOUT</u> </h2  >
+    
+    <div id="div1">
+        
+       
+        <h1 style="text-align: center;"><u>Paragraph</u></h1>    
+    <p id="para" onmouseover="change()" onmouseout="original()"> DOM stands for <b>Document Object Model</b> . It is a programming interface that allows us to create, change, or remove elements from a website document. DOM manipulation is when you use JavaScript to add, remove, and modify elements of a website. It is very common in web development.</p>
+    <button id="bt" onmouseover="changetext()" onmouseout="originaltext()"><b>Submit</b></button>
+    <br><br>
+    <input type="text" id="text" value=""><button onclick="Assigntext()"><b> click me</b></button>
+    <br><br>
+    <h1 style="text-align: center;"><u> List of items</u></h1> 
+    <ul type="none">
+        <li onmouseover="changelist1()" onmouseout="originallist1()" id="li1">Mango</li>
+        <li onmouseover="changelist2()" onmouseout="originallist2()" id="li2">Apple</li>
+        <li onmouseover="changelist3()" onmouseout="originallist3()" id="li3">Pine Apple</li>
+    </ul>
+    </div>
+    <script>
+        function change()
+        {
+           document.getElementById('para').style.color="red"; 
+        }
+        function original()
+        {
+            document.getElementById('para').style.color="black"; 
+        }
+        let k=document.getElementById('bt').innerText;
+        function changetext(){
+            document.getElementById('bt').innerHTML='Click me';
+        }
+        function originaltext()
+        {
+            document.getElementById('bt').innerHTML=k;
+        }
+        function Assigntext()
+        {
+            document.getElementById('text').value=document.getElementById('para').innerText;
+        }
+        function changelist1()
+        {
+            let x=document.getElementById('li1');
+            x.style.color="green";
+        }
+        function originallist1(){
+            let y=document.getElementById('li1');
+            y.style.color='black';
+
+        }
+        function changelist2()
+        {
+            let x=document.getElementById('li2');
+            x.style.color="green";
+           
+        }
+        function originallist2(){
+            let y=document.getElementById('li2');
+            y.style.color='black';
+
+        }
+        function changelist3()
+        {
+            let x=document.getElementById('li3');
+            x.style.color="green";
+           
+        }
+        function originallist3(){
+            let y=document.getElementById('li3');
+            y.style.color='black';
+
+        }
+    </script>
+</body>
+</html>
