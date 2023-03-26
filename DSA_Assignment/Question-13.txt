@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+     public static void BitSetOpr(String q, String n1, String n2, BitSet b1, BitSet b2){
+
+        switch(q){
+             case "XOR":
+                if(n1.compareTo(n2) > 0){
+                    b2.xor(b1);
+                }else{
+                    b1.xor(b2);
+                }
+                break;
+            case "AND":
+                if(n1.compareTo(n2) > 0){
+                    b2.and(b1);
+                }else{
+                    b1.and(b2);
+                }
+                break;
+            case "OR":
+                if(n1.compareTo(n2) > 0){
+                    b2.or(b1);
+                }else{
+                    b1.or(b2);
+                }
+                break;
+                
+                
+           
+            case "FLIP":
+                if(n1.equals("1")){
+                    b1.flip(Integer.valueOf(n2));
+                }else{
+                    b2.flip(Integer.valueOf(n2));
+                }
+                break;
+            case "SET":
+                if(n1.equals("1")){
+                    b1.set(Integer.valueOf(n2));
+                }else{
+                    b2.set(Integer.valueOf(n2));
+                }
+                break;
+        }
+        System.out.printf("%s %s\n", b1.cardinality(), b2.cardinality());
+    }
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        
+        int t= s.nextInt();
+        BitSet bits1 = new BitSet(n);
+        BitSet bits2 = new BitSet(n);
+        
+        while(t-- > 0){
+            String q = s.next();
+            String n1 = s.next();
+            String n2 = s.next();
+            BitSetOpr(q, n1, n2, bits1, bits2);
+        }
+    }
+}

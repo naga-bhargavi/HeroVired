@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution{
+    public static void main(String[] args)
+    {
+            String reg_exp = "<(.+)>([^<>]+)</(\\1)>";
+            
+    Pattern pat = Pattern.compile(reg_exp);
+    
+        Scanner s = new Scanner(System.in);
+         int t = Integer.parseInt(s.nextLine());
+
+    while (t-- > 0) 
+    {
+        String sentance = s.nextLine();
+        
+        
+        Matcher m = pat.matcher(sentance);
+
+        if (m.find()) {
+            m.reset();
+            while (m.find()) {
+                System.out.println(m.group(2));
+            }
+        } else {
+            System.out.println("None");
+        }
+    }
+
+  
+}
+}
